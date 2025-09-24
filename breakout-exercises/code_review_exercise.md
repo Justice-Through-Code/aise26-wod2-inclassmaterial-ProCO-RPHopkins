@@ -18,7 +18,7 @@ import hashlib
 
 # API key exposed - recommended to place in `.env` file and use `.gitignore`
 API_KEY = "sk-live-1234567890abcdef"
-# Password exposed 
+# Password exposed in URL - again use .env file
 DATABASE_URL = "postgresql://admin:password123@localhost/prod"
 DEBUG_MODE = True
 
@@ -38,6 +38,7 @@ def authenticate_user(username, password):
 
 def reset_password(user_id, new_password):
     conn = sqlite3.connect("users.db")
+    # allows anyone to change password 
     query = f"UPDATE users SET password='{new_password}' WHERE id={user_id}"
     conn.execute(query)
     conn.commit()

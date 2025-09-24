@@ -16,7 +16,9 @@ import requests
 import sqlite3
 import hashlib
 
+# API key exposed - recommended to place in `.env` file and use `.gitignore`
 API_KEY = "sk-live-1234567890abcdef"
+# Password exposed 
 DATABASE_URL = "postgresql://admin:password123@localhost/prod"
 DEBUG_MODE = True
 
@@ -26,6 +28,7 @@ def authenticate_user(username, password):
     
     result = conn.execute(query).fetchone()
     
+    # Username and password printed - Please use encryption such as bycrypt to avoid exposing usernames and passwords
     print(f"Login attempt: {username}:{password}")
     
     response = requests.post("https://api.auth.com/verify", 
